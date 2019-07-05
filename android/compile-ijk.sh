@@ -15,8 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-if [ -z "$ANDROID_NDK" -o -z "$ANDROID_NDK" ]; then
+ANDROID_NDK=/home/ubuntu/Android/Sdk/ndk/android-ndk-r14b
+ANDROID_SDK=/home/ubuntu/Android/Sdk
+# if [ -z "$ANDROID_NDK" -o -z "$ANDROID_SDK" ]; then
+echo $ANDROID_NDK
+echo "\n"
+if [ -z "$ANDROID_NDK" ]; then
     echo "You must define ANDROID_NDK, ANDROID_SDK before starting."
     echo "They must point to your NDK and SDK directories.\n"
     exit 1
@@ -43,7 +47,10 @@ do_sub_cmd () {
     if [ -L "./android-ndk-prof" ]; then
         rm android-ndk-prof
     fi
-
+    echo $SUB_CMD
+    echo $PARAM_SUB_CMD
+    echo $FF_MAKEFLAGS
+    echo "\n"
     if [ "$PARAM_SUB_CMD" = 'prof' ]; then
         echo 'profiler build: YES';
         ln -s ../../../../../../ijkprof/android-ndk-profiler/jni android-ndk-prof
